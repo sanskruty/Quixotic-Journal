@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+  <HEAD>
+    <title>
+    My work place
+    </title>
+    <link rel="stylesheet" type="text/css" href="static/styles/writer.css" />
+    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </HEAD>
+  <BODY>
+    <div class="header">
+        Quixotic journal
+
+        <nav>
+          <div class="icon-bar">
+              {% if type!= 'reader': %}
+          <a class="active" href="#"><i class="fa fa-home"> Home</i></a>
+          <a href="{{ url_for('search') }}"><i class="fa fa-search"> Search</i></a>
+          <a href="{{ url_for('journals')}}"><i class="fa fa-book"> Journals</i></a>
+          <a href="{{ url_for('explore')}}"><i class="fa fa-bank"> Explore</i></a>
+          <a href="{{url_for('poets')}}"><i class="	fa fa-address-card"> Poets board</i></a>
+          <a href="{{ url_for('machine') }}"><i class="fa fa-cube"> Play'w poems</i></a>
+          <a href="{{ url_for('profile')}}"><i class="fa fa-user-circle-o"> Profile</i></a>
+          <a href="{{ url_for('help')}}"><i class="fa fa-support"> Help</i></a>
+        {% else:%}
+           <a class="active" href="#"><i class="fa fa-home"> Home</i></a>
+          <a href="{{ url_for('explore')}}"><i class="fa fa-bank"> Explore</i></a>
+          <a href="{{url_for('poets')}}"><i class="	fa fa-address-card"> Poets board</i></a>
+          <a href="{{ url_for('machine') }}"><i class="fa fa-cube"> play'w poem</i></a>
+          <a href="{{ url_for('profile')}}"><i class="fa fa-user-circle-o"> Profile</i></a>
+          <a href="{{ url_for('help')}}"><i class="fa fa-support"> Help</i></a>
+        {% endif %}
+
+          </div>
+        </nav>
+
+    </div>
+
+    <br>
+    <style>
+
+</style>
+    <center>
+    <form method="post" action=".">
+        <table width="100%" cellpadding="2px" cellspacing="2px" align="center">
+            <tr>
+                <td width="15%" align="center" bgcolor="white">
+                    {% if type!='reader': %}
+                    <table disabled>
+                        <caption><b>Suggestions:</b></caption>
+                         {% for i in list:%}
+                         <tr><td>{{i}}</td></tr>
+                        {%endfor%}
+                     </table>
+                {% endif %}
+                 </td>
+                {% if type!='reader':%}
+                {% if flag=='disabled' : %}
+                <td width="85%"  align="center">
+                     <textarea name="poem" placeholder="Trail your word stitch here..." disabled=true>{{text}}
+                     </textarea>
+                </td>
+                {% else: %}
+                 <td width="85%"  align="center">
+                     <textarea name="poem" placeholder="Trail your word stitch here..." >{{text}}
+                     </textarea>
+                </td>
+                {% endif %}
+                {% else: %}
+                <td width="85%"  align="center">
+                     <textarea name="poem" placeholder="Trail your word stitch here..." disabled=true>{{text}}
+                     </textarea>
+                </td>
+                {% endif %}
+
+            </tr>
+            <tr>
+                {% if type!= 'reader':%}
+                 {% if flag=='disabled' : %}
+                <td></td>
+                <td align="center"> <label>Poem name: </label><input type="text" name="fileName" placeholder="poem name" value="{{fname}}" disabled=true></td>
+                {% else: %}
+                <td></td>
+                <td align="center"> <label>Poem name: </label><input type="text" name="fileName" placeholder="poem name" value="{{fname}}"></td>
+                {% endif %}
+                {% endif %}
+            </tr>
+            <tr>
+                <td></td>
+                <td align="center">&nbsp;&nbsp;
+                    {% if type!='reader': %}
+                    <button type="submit" name="save" value="reset"><i class="fa fa-refresh"></i> </button>
+
+                    <button type="submit" name="save" value="file_save"><i class="fa fa-file"></i></button>
+                        {% if flag!='disabled' : %}
+                    <button type="submit" name="save" value="play"><i class="fa fa-play"></i></button> &nbsp;&nbsp;
+
+                    <button type="submit" name="save" value="draft"><i class="fa fa-save"></i></button>
+                        &nbsp;
+                    <button type="submit" name="save" value="sugg" ><i class="fa fa-lightbulb-o" style="font-size:22px"></i></button>
+                        {% endif %}
+                    {% endif %}
+                </td>
+            </tr>
+         </table>
+    </form>
+    </center>
+  </BODY>
+</html>

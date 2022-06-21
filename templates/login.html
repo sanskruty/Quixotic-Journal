@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>
+			Login
+		</title>
+		<link rel="stylesheet" type="text/css" href="static/styles/register.css" />
+		<link href="https://fonts.googleapis.com/css?family=Poiret+One&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class = "sub">
+		<div class="header">			
+				Quixotic journal
+		</div>
+		<hr>
+		<center>
+		<form name="loginForm" method="post" action="{{url_for('login')}}">
+		<table>
+			<tr>
+				<td><label> {{form.email.label}}  &nbsp;</label></td>
+				<td>{{form.email}}</td>
+			</tr>
+			<tr>
+				<td><label> {{form.password.label}} &nbsp;</label></td>
+				<td>{{form.password}}</td>
+			</tr>
+			<tr>
+				<td><label> {{form.type.label}} </label></td>
+				<td>{{form.type}}</td>
+			</tr>
+		</table>
+		<br>
+		<br><b>{{form.submit}}</b>
+		</form>
+			<p><b>Don't have an account?<a href="{{url_for('register')}}"> Sign Up </a></b></p>
+			{% if form.email.errors %}
+            <ul>
+             {% for error in form.email.errors %}
+				<li>{{ error }}</li>
+             {% endfor %}
+             </ul>
+             {% endif %}
+			{% for message in form.password.errors %}
+				<div>{{ message }}</div>
+			{% endfor %}
+		</center>
+	</div>
+	</body>
+</html>

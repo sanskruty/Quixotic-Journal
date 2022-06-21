@@ -1,0 +1,50 @@
+@app.route('/',methods=['GET','POST'])
+def listen():
+    text= request.form['poem']
+    name = request.form['fileName']
+    # return render_template('writer.html')
+    if text=="":
+        return render_template('writer.html',text=text)
+    else:
+        flag = au.playAudio(text)
+        if flag == 0:
+            ring = "Please refresh the page"
+        else:
+            ring=""
+        saveAu.saveAudio(text,name)
+        return render_template('writer.html',text=text,fname=name,ring=ring)
+
+
+
+        <script>
+        function getWords()
+            {
+                var p = document.getElementByName("poem");
+                var li = p.split("\n");
+                var len = li.length;
+                var wds = li[len-1].split(" ");
+                var wlen = wds.length;
+                var fwd = wds[wlen-2];
+                var swd = wds[wlen-1];
+                return fwd,swd
+            }
+        </script>
+
+
+
+<table>
+<!--          <tr>-->
+          <tr>{{users['email']}} belongs to  {{users['username']}} </tr><br>
+          <tr>
+            {% if users['type']=='reader':%}
+              Enjoy reading {{users['username']}}<br>
+            {% elif users['type']=='poet':%}
+              Enjoy writing {{users['username']}}<br>
+            {% elif users['type']=='other':%}
+              Enjoy Quixotic Journal {{users['username']}}<br>
+            {%endif%}
+
+          </tr>
+          <tr><button type="submit" name="logout" value="{{users['username']}}">Log out</button></tr>
+<!--        </tr>-->
+</table>

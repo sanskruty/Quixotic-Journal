@@ -1,0 +1,140 @@
+textarea
+{
+    width: 30%;
+    height: 300px;
+    resize:none;
+    left: 30%;
+    box-shadow: inset 0 8px 8px  rgba(0, 0, 0, 0.1);
+    font-family: 'Dosis', sans-serif;
+    font-size: 100%;
+    border:none;
+    content:center;
+    padding:20px;
+}
+table
+{
+    color:black;
+}
+button:focus,button:active,textarea:focus,textarea:active,input:focus
+{
+    outline:none;
+    color:black;
+}
+
+.header
+{
+  font-family: 'Sacramento', cursive;
+  color:#000000;
+  font-size: 70px;
+  text-align:center;
+  background-color: white;
+}
+body
+{
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-color: #ffffff;
+}
+
+
+.nav
+{
+	color:white;
+	background-color:#9db6c2;
+	border:none;
+	margin:12px 0 12px 0;
+}
+
+.icon-bar {
+  width: 100%;
+  background-color:#9db6c2;
+  overflow: auto;
+}
+
+.icon-bar a {
+  float: left;
+  width: 10%;
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 20px;
+}
+
+.icon-bar a:hover {
+  background-color: #000000;
+}
+
+.active {
+  background-color: #b3a889;
+}
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text]
+{
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: center;
+  margin-left: 10%;
+  width: 40%;
+  background:#b3a889;
+}
+form.example button {
+  float: center;
+  height: 7.2%;
+  background: #000000;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+form.example button:active,select
+{
+    background:white;
+    color:black;
+}
+input,select
+{
+  border:none;
+  background-color:#c2ffd1 ;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color:black;
+  font-size: 15px;
+  font-weight: 200;
+  font-family: 'Poiret One', cursive;
+}
+
+button:hover
+{
+    font-color: black;
+}
+button
+{
+  text-decoration: none;
+  border:none;
+  color:#faf9d9;
+  background-color:#9db6c2;
+  border-radius: 50px;
+  padding: 1% 2% 1% 2%;
+  font-size: 15px;
+  font-family: 'Amatic SC', cursive;
+  size: 3%;
+}
+
+form.example button:hover {
+  background: #9db6c2;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}

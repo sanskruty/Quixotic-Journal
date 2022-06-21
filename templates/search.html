@@ -1,0 +1,63 @@
+<html>
+	<HEAD>
+		<title>		
+			Search area
+		</title>
+		<link rel="stylesheet" type="text/css" href="static/styles/search.css" />
+		<link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=News+Cycle&display=swap" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</HEAD>
+	<BODY>
+		<div class="header">
+				Quixotic journal
+
+			<nav>
+				<div class="icon-bar">
+  				<a href="{{ url_for('writer')}}"><i class="fa fa-home"> Home</i></a>
+				<a class="active" href="#"><i class="fa fa-search"> Search</i></a> 
+  				<a href="{{ url_for('journals')}}"><i class="fa fa-book"> Journals</i></a>
+				<a href="{{ url_for('explore')}}"><i class="fa fa-bank"> Explore</i></a>
+          		<a href="{{url_for('poets')}}"><i class="	fa fa-address-card"> Poets board</i></a>
+				<a href="{{ url_for('machine') }}"><i class="fa fa-cube"> Play'w poems</i></a>
+  				<a href="{{ url_for('profile')}}"><i class="fa fa-user-circle-o"> Profile</i></a>
+  				<a href="{{ url_for('help')}}"><i class="fa fa-support"> Help</i></a>
+				</div>
+			</nav>
+
+		</div>
+		
+		<br>
+
+		<center>
+		<form class="example" action="#" method="post">
+  			<input type="text" placeholder="Enter the word..." name="search" value="{{word}}">
+  			<button type="submit"><i class="fa fa-search"></i></button>
+		</form>
+
+		</center>
+		<br>
+		<table width="100%" cellspacing="50">
+			<tr>
+				<th align="center">Rhymers: </th>
+				<th align="center">Thesaurus: </th>
+				<th align="center">Definition: </th>
+			</tr>
+		</table>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<textarea  disabled >
+		{%for i in listRhy%}{{i}}
+		{%endfor%}
+		</textarea>
+
+        <textarea disabled>
+		{%for i in listThe%}{{i}}
+		{%endfor%}
+		</textarea>
+
+        <textarea disabled>{{listDef}}
+		</textarea>
+		</p>
+	</BODY>	
+</html>

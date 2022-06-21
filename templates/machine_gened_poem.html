@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+  <HEAD>
+    <title>
+    Machine generated poem
+    </title>
+    <link rel="stylesheet" type="text/css" href="static/styles/writer.css" />
+    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </HEAD>
+  <BODY>
+    <div class="header">
+        Quixotic journal
+
+        <nav>
+          <div class="icon-bar">
+          <a href="{{ url_for('writer') }}"><i class="fa fa-home"> Home</i></a>
+          <a href="{{ url_for('search') }}"><i class="fa fa-search"> Search</i></a>
+          <a href="{{ url_for('journals')}}"><i class="fa fa-book"> Journals</i></a>
+          <a href="{{ url_for('explore')}}"><i class="fa fa-bank"> Explore</i></a>
+          <a href="{{url_for('poets')}}"><i class="	fa fa-address-card"> Poets board</i></a>
+          <a class="active" href="#"><i class="fa fa-cube"> Play'w poems</i></a>
+          <a href="{{ url_for('profile')}}"><i class="fa fa-user-circle-o"> Profile</i></a>
+          <a href="{{ url_for('help')}}"><i class="fa fa-support"> Help</i></a>
+
+          </div>
+        </nav>
+
+    </div>
+
+    <br>
+    <style>
+
+</style>
+    <center>
+    <form method="post" action="{{url_for('machine')}}">
+        <label><h1>Try your hands on machine generated poem !</h1></label>
+        <table  align="center">
+
+            <tr  align="center">
+                <td width="40%">
+                   <label>A line or a word to begin with: </label>
+                        <input type="text" name="line1">
+                    <br>
+                    <label>second line or a word : </label>
+                        <input type="text" name="line2">
+                    <br>
+                    <br>
+                    <button name="generate" type="submit">Generate</button>
+                </td>
+                <td width="90%">
+                    <textarea disabled="true" name="generation">{{text}}</textarea>
+                </td>
+            </tr>
+         </table>
+    </form>
+    </center>
+  </BODY>
+</html>

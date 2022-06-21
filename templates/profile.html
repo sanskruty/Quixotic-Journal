@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+  <HEAD>
+    <title>   
+      Profile
+    </title>
+    <link rel="stylesheet" type="text/css" href="static/styles/writer.css" />
+    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=News+Cycle&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </HEAD>
+  <BODY>
+    <div class="header">
+        Quixotic journal
+
+        <nav>
+          <div class="icon-bar">
+            {% if type!='reader': %}
+          <a href="{{ url_for('writer')}}"><i class="fa fa-home"> Home</i></a>
+          <a href="{{ url_for('search')}}"><i class="fa fa-search"> Search</i></a>
+          <a href="{{ url_for('journals')}}"><i class="fa fa-book"> Journals</i></a>
+          <a href="{{ url_for('explore')}}"><i class="fa fa-bank"> Explore</i></a>
+          <a href="{{url_for('poets')}}"><i class="	fa fa-address-card"> Poets board</i></a>
+          <a href="{{ url_for('machine') }}"><i class="fa fa-cube"> Play'w poems</i></a>
+          <a class="active" href="#"><i class="fa fa-user-circle-o"> Profile</i></a>
+          <a href="{{ url_for('help')}}"><i class="fa fa-support"> Help</i></a>
+            {% else: %}
+          <a href="{{ url_for('writer')}}"><i class="fa fa-home"> Home</i></a>
+          <a href="{{ url_for('explore')}}"><i class="fa fa-bank"> Explore</i></a>
+          <a href="{{url_for('poets')}}"><i class="	fa fa-address-card"> Poets board</i></a>
+          <a href="{{ url_for('machine') }}"><i class="fa fa-cube"> Play'w poems</i></a>
+          <a class="active" href="#"><i class="fa fa-user-circle-o"> Profile</i></a>
+          <a href="{{ url_for('help')}}"><i class="fa fa-support"> Help</i></a>
+          {% endif %}
+
+            </div>
+        </nav>
+
+    </div>
+    <br>
+    <div>
+      <center>
+        <form method="post" action="{{url_for('profile')}}">
+          <table cellspacing="10px" cellpadding="80px" width="80%" height="100%">
+              <tr align="center">
+                <td>
+                  {% if users['type']=='reader':%}
+                    Enjoy reading {{users['username']}} ! <br>
+                  {% elif users['type']=='poet':%}
+                    Enjoy writing {{users['username']}} !<br>
+                   {{users['username']}}, you have written {{count}} poems.<br>
+                    Number of subscribers - {{subscribers}} <br>
+                  {% elif users['type']=='other':%}
+                    Enjoy Quixotic Journal {{users['username']}} !<br>
+                  {%endif%}
+                    You've logged in with <i>{{users['email']}}</i> email-id.<br>
+                </td>
+                <td>
+                  <b>Poets subscribed:</b><br>
+                  {% for poet in subList: %}
+                    {{poet['pid']}}<br>
+                  {% endfor %}
+                </td>
+                <td>
+                  Want to <button type="submit" name="sub" value="logout {{users['username']}}">Log out</button>  ?!
+                </td>
+               </tr>
+          </table>
+          <table cellspacing="1px" cellpadding="80px" width="80%" height="100%">
+            <tr>
+              {% if cnt != 0: %}
+              <td align="center">
+                <b>Notifications :</b><br>
+
+              {% for notif in notifs: %}
+                  Poet {{notif['poet']}} has added a new poem {{notif['corp']['poem_name']}} at {{notif['corp']['dateTime']}}.
+                  <button type="submit" name="sub" value="view {{notif['corp']['poem_name']}}">view</button> <br>
+              {% endfor %}
+              </td>
+              {% endif %}
+            </tr>
+          </table>
+      </form>
+          &copy; Quixotic Journal
+      </center>
+    </div>
+  </BODY> 
+</html>

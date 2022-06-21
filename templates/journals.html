@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+  <HEAD>
+    <title>   
+      Journals
+    </title>
+    <link rel="stylesheet" type="text/css" href="static/styles/writer.css" />
+    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=News+Cycle&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </HEAD>
+  <BODY>
+    <div class="header">
+        Quixotic journal
+
+        <nav>
+          <div class="icon-bar">
+          <a href="{{ url_for('writer')}}"><i class="fa fa-home"> Home</i></a>
+          <a href="{{ url_for('search')}}"><i class="fa fa-search"> Search</i></a>
+          <a class="active" href="#"><i class="fa fa-book"> Journals</i></a>
+          <a href="{{ url_for('explore')}}"><i class="fa fa-bank"> Explore</i></a>
+          <a href="{{url_for('poets')}}"><i class="	fa fa-address-card"> Poets board</i></a>
+          <a href="{{ url_for('machine') }}"><i class="fa fa-cube"> Play'w poems</i></a>
+          <a href="{{ url_for('profile')}}"><i class="fa fa-user-circle-o"> Profile</i></a>
+          <a href="{{ url_for('help')}}"><i class="fa fa-support"> Help</i></a>
+          </div>
+        </nav>
+    
+    </div> 
+    <br>
+    <div>
+      <center>
+      <form name="journals" method="POST" action="{{url_for('journals')}}">
+        <table cellpadding="10px" width="80%"  align="center" border="0">
+
+
+          <tr align="center">
+            <td><b>Author</b></td>
+            <td><b>Date - Time</b></td>
+            <td><b>Name</b></td>
+            <td><b>Poem</b></td>
+          </tr>
+            {% for poem in poems:%}
+            {% if poem["draft"]==False%}
+            <tr align="center">
+                <td>{{poem['user']}}</td>
+                <td>{{poem['dateTime']}}</td>
+                <td>{{poem['poem_name']}}</td>
+                <td>{{poem['poem'].split("\n")[0]+" ..."}}</td>
+              <td><button type="submit" name="operation" value="del {{poem['poem_name']}}"> Delete </button></td>
+              <td><button type="submit" name="operation" value="edit {{poem['poem_name']}}"> Edit </button></td>
+              <td><button type="submit" name="operation" value="play {{poem['poem_name']}}"> Play </button> </td>
+            </tr>
+            {% else:%}
+            <tr align="center">
+                <td>{{poem['user']}}</td>
+                <td>{{poem['dateTime']}}</td>
+                <td>{{poem['poem_name']}}</td>
+                <td>{{poem['poem'].split("\n")[0]+" ..."}}</td>
+              <td><button type="submit" name="operation" value="del {{poem['poem_name']}}"> Delete </button></td>
+              <td><button type="submit" name="operation" value="edit {{poem['poem_name']}}"> Edit </button></td>
+              <td>Draft</td>
+            </tr>
+            {%endif%}
+            {%endfor%}
+        </table>
+      </form>
+      </center>
+    </div>
+  </BODY> 
+</html>

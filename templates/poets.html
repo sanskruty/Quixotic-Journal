@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Poets Board</title>
+    <link rel="stylesheet" type="text/css" href="static/styles/writer.css" />
+    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=News+Cycle&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .button1
+        {
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+     <div class="header">
+        Quixotic journal
+
+        <nav>
+          <div class="icon-bar">
+              {% if type!='reader': %}
+          <a href="{{ url_for('writer')}}"><i class="fa fa-home"> Home</i></a>
+          <a href="{{ url_for('search')}}"><i class="fa fa-search"> Search</i></a>
+          <a href="{{url_for('journals')}}"><i class="fa fa-book"> Journals</i></a>
+          <a href="{{ url_for('explore')}}"><i class="fa fa-bank"> Explore</i></a>
+          <a class="active" href="#"><i class="	fa fa-address-card"> Poets board</i></a>
+          <a href="{{ url_for('machine') }}"><i class="fa fa-cube"> Play'w poems</i></a>
+          <a href="{{ url_for('profile')}}"><i class="fa fa-user-circle-o"> Profile</i></a>
+          <a href="{{ url_for('help')}}"><i class="fa fa-support"> Help</i></a>
+              {% else: %}
+          <a href="{{ url_for('writer')}}"><i class="fa fa-home"> Home</i></a>
+          <a href="{{ url_for('explore')}}"><i class="fa fa-bank"> Explore</i></a>
+          <a class="active" href="#"><i class="	fa fa-address-card"> Poets board</i></a>
+          <a href="{{ url_for('machine') }}"><i class="fa fa-cube"> Play'w poems</i></a>
+          <a href="{{ url_for('profile')}}"><i class="fa fa-user-circle-o"> Profile</i></a>
+          <a href="{{ url_for('help')}}"><i class="fa fa-support"> Help</i></a>
+              {% endif %}
+
+          </div>
+        </nav>
+
+    </div>
+    <br>
+    <div>
+      <center>
+      <form method="POST" action="{{url_for('poets')}}">
+        <table cellpadding="10px" width="80%"  align="center" border="0">
+                <tr>
+                    <td align="center"><label>Poet name</label><td>
+                    <td align="center"><label>No of poems</label></td>
+                    <td align="center"><label>No of subscribers</label></td>
+                    <td align="center"></td>
+                </tr>
+                {% for itr in range(0,len): %}
+                <tr>
+                    <td align="center">{{poet[itr]}}<td>
+                    <td align="center">{{count[itr]}}</td>
+                    <td align="center">{{sub[itr]}}</td>
+                    {% if sub_stat[itr] == 1: %}
+                        <td align="center"><button class="button1" type="submit" name="subscribe" value="{{poet[itr]}} red"  >Unsubscribe</button> </td>
+                    {% else: %}
+                        <td align="center"><button type="submit" name="subscribe" value="{{poet[itr]}} blue">Subscribe</button> </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+        </table>
+      </form>
+      </center>
+    </div>
+</body>
+</html>

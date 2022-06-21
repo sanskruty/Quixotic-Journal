@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+  <HEAD>
+    <title>   
+      Help
+    </title>
+    <link rel="stylesheet" type="text/css" href="static/styles/writer.css" />
+    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=News+Cycle&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </HEAD>
+  <BODY>
+    <div class="header">
+        Quixotic journal
+
+        <nav>
+          <div class="icon-bar">
+            {% if type!='reader': %}
+          <a href="{{ url_for('writer')}}"><i class="fa fa-home"> Home</i></a>
+          <a href="{{ url_for('search')}}"><i class="fa fa-search"> Search</i></a>
+          <a href="{{ url_for('journals')}}"><i class="fa fa-book"> Journals</i></a>
+          <a href="{{ url_for('explore')}}"><i class="fa fa-bank"> Explore</i></a>
+		  <a href="{{url_for('poets')}}"><i class="	fa fa-address-card"> Poets board</i></a>
+          <a href="{{ url_for('machine') }}"><i class="fa fa-cube"> Play'w poems</i></a>
+          <a href="{{ url_for('profile')}}"><i class="fa fa-user-circle-o"> Profile</i></a>
+          <a class="active" href="#"><i class="fa fa-support"> Help</i></a>
+            {% else: %}
+          <a href="{{ url_for('writer')}}"><i class="fa fa-home"> Home</i></a>
+          <a href="{{ url_for('explore')}}"><i class="fa fa-bank"> Explore</i></a>
+          <a href="{{url_for('poets')}}"><i class="	fa fa-address-card"> Poets board</i></a>
+          <a href="{{ url_for('machine') }}"><i class="fa fa-cube"> Play'w poems</i></a>
+          <a href="{{ url_for('profile')}}"><i class="fa fa-user-circle-o"> Profile</i></a>
+          <a class="active" href="#"><i class="fa fa-support"> Help</i></a>
+            {% endif %}
+          </div>
+        </nav>
+    
+    </div>
+    <br>
+    <table align="center"  cellpadding="50px" cellspacing="50px" width="80%">
+      <tr>
+        <td align="center">
+        Quixotic Journal is a Poet Assistant.<br>
+          {% if type!='reader' : %}
+        You can frame your poem, save it in your profile and edit, delete even listen the poem .<br>
+        You can search for search for rhyming words, synonyms and definition of  a word .<br>
+        You can view your poems in journals tab of Quixotic Journal .<br>
+          {% endif %}
+        You can explore poems on this platform written by other poets , by poem or poet name.<br>
+        You can subscribe poems of other poets on this platform by doouble clicking the subscribe<br>
+         button as well as unsubscribe by double clicking the unsubscribe button.<br>
+        You can log out of Quixotic Journal from via Profile tab .<br>
+        <br>
+        <br>
+        &copy;Quixotic Journal
+      </td>
+      </tr>
+    </table>
+  </BODY> 
+</html>
